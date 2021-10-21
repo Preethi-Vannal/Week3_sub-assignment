@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Displaying Average marks of a student</title>
+    <link rel=stylesheet href="stylesheet.css">
+</head>
+<body>
+    <div id="parent">
+        <form action="#" id="formSubmission" method="get">
+            <label for="fname">Full name</label>
+            <input class="text" id="fname" placeholder='Enter your FullName'><br>
+
+            <label for="col_name">Name of the college</label>
+            <input type="text" id="col_name" placeholder='Enter your Institute name'><br>
+
+            <label for="col_name">Name of the branch</label>
+            <select id="branches" name="branches">
+                <option value="select">Select</option>
+                <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
+                <option value="Electical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+            </select><br>
+
+            <label for="S1_marks">First Semester marks</label>
+            <input type="number" id="s1_marks" placeholder='Enter your Semester1 marks'><br>
+
+            <label for="S2_marks">Second Semester marks</label>
+            <input type="number" id="s2_marks" placeholder='Enter your Semester2 marks'><br>
+
+            <label for="S3_marks">Third Semester marks</label>
+            <input type="number" id="s3_marks" placeholder='Enter your Semester3 marks'><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <h1>Average marks Scored in a semester</h1>
+    <ul id="data">
+        <li><b>Name of the student</b></li>
+        <li><b>Name of the college</b></li>
+        <li><b>Name of the Branch</b></li>
+        <li><b>First Semester marks</b></li>
+        <li><b>Second Semester marks</b></li>
+        <li><b>Third Semester marks</b></li>
+        <li><b>Average of three Semesters</b></li>
+    </ul>
+    <script>
+        let form=document.getElementById("formSubmission");
+        let table=document.getElementById('data');
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            submit();
+        })
+        const submit=() => {
+            let fname=document.getElementById("fname").value;
+            let col_name=document.getElementById("col_name").value;
+            let branches=document.getElementById("branches").value;
+            let s1_marks=document.getElementById("s1_marks").value;
+            let s2_marks=document.getElementById("s2_marks").value;
+            let s3_marks=document.getElementById("s3_marks").value;
+            let average=(parseInt(s1_marks)+parseInt(s2_marks)+parseInt(s3_marks))/3;
+        
+            let newArray=[fname,col_name,branches,s1_marks,s2_marks,s3_marks,average];
+            newArray.forEach((item) => {
+                var li=document.createElement("li");
+            var text=document.createTextNode(item);
+            li.appendChild(text);
+            table.appendChild(li);
+        })
+        form.reset();
+    }
+    </script>
+</body>
+</html>
